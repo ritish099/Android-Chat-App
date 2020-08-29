@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.chatapp.Adapter.UserAdapter;
 import com.example.chatapp.Model.Chat;
+import com.example.chatapp.Model.ChatList;
 import com.example.chatapp.Model.User;
 import com.example.chatapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,7 +36,7 @@ public class ChatsFragment extends Fragment {
     FirebaseUser fuser;
     DatabaseReference reference;
 
-    private List<String> usersList;
+    private List<ChatList> usersList;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,28 +50,17 @@ public class ChatsFragment extends Fragment {
 
         usersList=new ArrayList<>();
 
-        reference= FirebaseDatabase.getInstance().getReference("Chats");
-
+        reference=FirebaseDatabase.getInstance().getReference("ChatList").child(fuser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usersList.clear();
-
-                for(DataSnapshot snapshot : dataSnapshot.getChildren())
+                for(DataSnapshot snapshot: dataSnapshot.getChildren())
                 {
-                    Chat chat = snapshot.getValue(Chat.class);
-
-                    if(chat.getSender().equals(fuser.getUid()))
-                    {
-                        usersList.add(chat.getReceiver());
-                    }
-
-                    if(chat.getReceiver().equals(fuser.getUid()))
-                    {
-                        usersList.add(chat.getSender());
-                    }
+                    ChatList chatList = snapshot.getValue(ChatList.class);
+                    usersList.add(chatList);
                 }
-                readChats();
+                chatList();
             }
 
             @Override
@@ -78,48 +68,30 @@ public class ChatsFragment extends Fragment {
 
             }
         });
+
         return view;
     }
 
-    private void readChats()
+    private void chatList()
     {
-        mUsers= new ArrayList<>();
-
+        mUsers=new ArrayList<>();
         reference=FirebaseDatabase.getInstance().getReference("Users");
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
                 mUsers.clear();
-
-                for(DataSnapshot snapshot : datasnapshot.getChildren())
+                for(DataSnapshot snapshot: datasnapshot.getChildren())
                 {
-                    User user= snapshot.getValue(User.class);
-
-                    //Display 1 user from chats
-                    for(String id: usersList)
+                    User user=snapshot.getValue(User.class);
+                    for(ChatList chatList: usersList)
                     {
-                        if(user.getId().equals(id))
+                        if(user.getId().equals(chatList.getid()))
                         {
-                            if(mUsers.size()!=0)
-                            {
-                                for(User user1 : mUsers)
-                                {
-                                    if(!user.getId().equals(user1.getId()))
-                                    {
-                                        mUsers.add(user);
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                mUsers.add(user);
-                            }
+                            mUsers.add(user);
                         }
                     }
                 }
-
-                userAdapter = new UserAdapter(getContext(),mUsers,true);
+                userAdapter=new UserAdapter(getContext(),mUsers,true);
                 recyclerView.setAdapter(userAdapter);
             }
 
@@ -129,4 +101,6 @@ public class ChatsFragment extends Fragment {
             }
         });
     }
+
+
 }

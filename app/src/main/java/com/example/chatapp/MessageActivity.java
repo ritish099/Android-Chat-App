@@ -145,6 +145,24 @@ public class MessageActivity extends AppCompatActivity {
                     }
                 }
 
+                //Add user to Chat fragment
+                final DatabaseReference chatref=FirebaseDatabase.getInstance().getReference("Chatlist")
+                        .child(fuser.getUid())
+                        .child(userid);
+                chatref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                        if(!datasnapshot.exists())
+                        {
+                            chatref.child("id").setValue(userid);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
 
             @Override
