@@ -137,6 +137,7 @@ public class MessageActivity extends AppCompatActivity {
                 for(DataSnapshot snapshot:datasnapshot.getChildren())
                 {
                     Chat chat=snapshot.getValue(Chat.class);
+                    assert chat != null;
                     if(chat.getReceiver().equals(fuser.getUid()) && chat.getSender().equals(userid))
                     {
                         HashMap<String, Object> hashMap= new HashMap<>();
@@ -183,6 +184,8 @@ public class MessageActivity extends AppCompatActivity {
         hashMap.put("isseen",false);
 
         reference.child("Chats").push().setValue(hashMap);
+
+
 
     }
 

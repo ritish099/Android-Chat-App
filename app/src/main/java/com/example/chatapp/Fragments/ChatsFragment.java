@@ -12,8 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.chatapp.Adapter.UserAdapter;
-import com.example.chatapp.Model.Chat;
-import com.example.chatapp.Model.ChatList;
+import com.example.chatapp.Model.Chatlist;
 import com.example.chatapp.Model.User;
 import com.example.chatapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,7 +35,7 @@ public class ChatsFragment extends Fragment {
     FirebaseUser fuser;
     DatabaseReference reference;
 
-    private List<ChatList> usersList;
+    private List<Chatlist> usersList;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,14 +49,14 @@ public class ChatsFragment extends Fragment {
 
         usersList=new ArrayList<>();
 
-        reference=FirebaseDatabase.getInstance().getReference("ChatList").child(fuser.getUid());
+        reference=FirebaseDatabase.getInstance().getReference("Chatlist").child(fuser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usersList.clear();
                 for(DataSnapshot snapshot: dataSnapshot.getChildren())
                 {
-                    ChatList chatList = snapshot.getValue(ChatList.class);
+                    Chatlist chatList = snapshot.getValue(Chatlist.class);
                     usersList.add(chatList);
                 }
                 chatList();
@@ -83,8 +82,9 @@ public class ChatsFragment extends Fragment {
                 for(DataSnapshot snapshot: datasnapshot.getChildren())
                 {
                     User user=snapshot.getValue(User.class);
-                    for(ChatList chatList: usersList)
+                    for(Chatlist chatList: usersList)
                     {
+                        assert user != null;
                         if(user.getId().equals(chatList.getid()))
                         {
                             mUsers.add(user);
