@@ -7,12 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class StartActivity extends AppCompatActivity {
 
-    Button login,register;
+    MaterialButton login,register;
 
     FirebaseUser firebaseUser;
 
@@ -36,10 +37,6 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
         login=findViewById(R.id.login);
         register=findViewById(R.id.register);
-
-
-
-
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

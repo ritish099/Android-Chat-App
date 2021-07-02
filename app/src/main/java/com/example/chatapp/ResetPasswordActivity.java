@@ -13,12 +13,14 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ResetPasswordActivity extends AppCompatActivity {
 
-    EditText send_email;
-    Button btn_reset;
+    TextInputEditText send_email;
+    MaterialButton btn_reset;
 
     FirebaseAuth firebaseAuth;
     @Override
@@ -26,10 +28,6 @@ public class ResetPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
 
-        Toolbar toolbar=findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Reset Password");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         send_email=findViewById(R.id.send_email);
         btn_reset=findViewById(R.id.btn_reset);

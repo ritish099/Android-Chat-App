@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.example.chatapp.Adapter.MessageAdapter;
 import com.example.chatapp.Model.Chat;
 import com.example.chatapp.Model.User;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,7 +44,7 @@ public class MessageActivity extends AppCompatActivity {
     DatabaseReference reference;
 
     ImageButton btn_send;
-    EditText text_send;
+    TextInputEditText text_send;
 
     MessageAdapter messageAdapter;
     List<Chat> mchat;

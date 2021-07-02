@@ -1,36 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="16dp"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     tools:context=".StartActivity">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image2"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="-70dp"
+        android:layout_marginRight="-30dp"
+        android:src="@drawable/circel_primary_dark" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image1"
+        android:layout_width="290dp"
+        android:layout_height="290dp"
+        android:layout_marginTop="-70dp"
+        android:layout_marginLeft="-50dp"
+        android:src="@drawable/circel_primary" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/heading_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chat App"
-        android:textColor="#fff"
-         android:textSize="25sp"
-        android:textStyle="bold"/>
+        android:fontFamily="@font/arbutus"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="20dp"
+        android:text="Me Chat"
+        android:textColor="#000"
+        android:textSize="30sp" />
 
-    <Button
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorPrimaryDark"
-        android:id="@+id/login"
-        android:text="Login"/>
+        android:layout_marginTop="300dp"
+        android:layout_marginLeft="20dp"
+        app:cardCornerRadius="20dp"
+        android:layout_marginRight="20dp"
+        app:cardElevation="7dp">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorPrimaryDark"
-        android:id="@+id/register"
-        android:text="Register"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-</LinearLayout>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/sub_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/arbutus"
+                android:text="Login Or Register"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_below="@+id/sub_heading"
+                android:id="@+id/login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/arbutus"
+                android:background="@drawable/round_button"
+                android:text="Login" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/arbutus"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/round_button"
+                android:text="Register" />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <!--    <TextView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Chat App"-->
+    <!--        android:textColor="#fff"-->
+    <!--        android:textSize="25sp"-->
+    <!--        android:textStyle="bold"/>-->
+
+    <!--    <Button-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:background="@color/colorPrimaryDark"-->
+    <!--        android:id="@+id/login"-->
+    <!--        android:text="Login"/>-->
+
+    <!--    <Button-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="10dp"-->
+    <!--        android:background="@color/colorPrimaryDark"-->
+    <!--        android:id="@+id/register"-->
+    <!--        android:text="Register"/>-->
+
+</RelativeLayout>

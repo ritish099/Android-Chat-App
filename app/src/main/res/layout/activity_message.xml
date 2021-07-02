@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e6e6e6"
+    android:background="#D8D7D7"
     tools:context=".MessageActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -53,19 +53,45 @@
         android:layout_alignParentBottom="true"
         android:layout_height="wrap_content">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/send_email_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/text_send"
-            android:background="@android:color/transparent"
-            android:hint="Type a Message..."
-            android:layout_toLeftOf="@id/btn_send"
-            android:layout_centerVertical="true"/>
+            android:hint="Type Message..."
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:startIconDrawable="@drawable/ic_baseline_tag_faces_24"
+            app:hintTextColor="#000"
+            android:layout_toLeftOf="@id/btn_send">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_send"
+                android:inputType="text"
+                android:fontFamily="@font/arbutus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <EditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/text_send"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:hint="Type a Message..."-->
+<!--            android:layout_toLeftOf="@id/btn_send"-->
+<!--            android:layout_centerVertical="true"/>-->
 
         <ImageButton
             android:layout_width="40dp"
             android:background="@drawable/ic_action_name"
+            android:layout_centerVertical="true"
             android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
             android:id="@+id/btn_send"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"/>
